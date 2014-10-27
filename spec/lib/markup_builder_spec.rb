@@ -4,21 +4,6 @@ describe MarkupBuilder do
 
   let(:builder) { MarkupBuilder.new }
 
-
-# builder = MarkupBuilder.new
-
-# builder.html {
-#   input(type: 'text') {
-#     puts "da block"
-#   }
-# }
-
-# puts builder.html {
-#   input(type: 'text'){
-
-#   }
-# } . build
-
   context "when building html" do
 
     it "can respond to tag names as method calls" do
@@ -46,6 +31,34 @@ describe MarkupBuilder do
 
       it "can create several nested tags" do
         expect(builder.html { head { title { } }}.build).to eq("<html><head><title></title></head></html>")
+      end
+
+      it "can render tags in the same level" do
+        builder.html {
+          head {
+
+          }
+          body {
+
+          }
+        }
+
+        expect(builder.build).to eq("<html><head></head><body></body></html>")
+      end
+    end
+
+    context "when setting content between tags" do
+      it "can render content passed between blocks" do
+        builder.html {
+          head {
+            "This is a content for HEAD"
+          }
+          body {
+            "This is a content for BODY"
+          }
+        }
+
+        expect(builder.build).to eq("<html><head>This is a content for HEAD</head><body>This is a content for BODY</body></html>")
       end
     end
 

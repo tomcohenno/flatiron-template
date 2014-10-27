@@ -15,7 +15,12 @@ class MarkupBuilder
     end
     @markup << ">"
     
-    self.instance_eval(&block) if block
+    if block
+      returned_value = self.instance_eval(&block) 
+      if returned_value.is_a? String
+        @markup << returned_value if returned_value
+      end
+    end
     
     @markup << "</#{tag_name}>"
 
