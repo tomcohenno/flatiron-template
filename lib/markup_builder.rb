@@ -5,10 +5,13 @@ class MarkupBuilder
     @markup = ""
   end
 
-  def method_missing(method_sym, *arguments, &block)
-    @markup << "#{method_sym} \n"
+  def method_missing(tag_name, *arguments, &block)
+    puts "#{tag_name}, #{arguments}"
+    @markup << "<#{tag_name}>"
     
     self.instance_eval(&block) if block
+    
+    @markup << "</#{tag_name}>"
 
     self
   end
@@ -16,26 +19,5 @@ class MarkupBuilder
   def build
     @markup
   end
-
-  def open_tag(tag)
-    "<#{tag}>"
-  end
-
-  def close_tag(tag)
-  end
+ 
 end
-
-
-builder = MarkupBuilder.new
-
-# builder.html {
-#   input(type: 'text') {
-#     puts "da block"
-#   }
-# }
-
-puts builder.html {
-  input(type: 'text'){
-
-  }
-} . build

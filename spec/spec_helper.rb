@@ -1,1 +1,1 @@
-require_relative 'lib/xml_builder'
+require_relative '../lib/markup_builder'
