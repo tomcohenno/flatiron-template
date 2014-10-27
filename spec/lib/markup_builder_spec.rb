@@ -47,7 +47,26 @@ describe MarkupBuilder do
       it "can create several nested tags" do
         expect(builder.html { head { title { } }}.build).to eq("<html><head><title></title></head></html>")
       end
+    end
 
+    context "when setting attributes" do
+
+      it "supports a single attribute" do
+
+          builder.input(type: "text") {
+
+          }
+
+          expect(builder.build).to eq('<input type="text"></input>')
+      end
+
+      it "supports multiple attributes" do
+          builder.input(type: "text", value: "something here", id: "some_id") {
+
+          }
+
+          expect(builder.build).to eq('<input type="text" value="something here" id="some_id"></input>')
+      end
     end
 
   end

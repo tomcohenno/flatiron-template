@@ -1,13 +1,19 @@
-# require 'pry'
 class MarkupBuilder
 
   def initialize
     @markup = ""
   end
 
-  def method_missing(tag_name, *arguments, &block)
-    puts "#{tag_name}, #{arguments}"
-    @markup << "<#{tag_name}>"
+  def method_missing(tag_name, *tag_attributes, &block)
+
+    @markup << "<#{tag_name}"
+
+    if !tag_attributes.empty?
+      tag_attributes.first.each do |attribute_name, attribute_value|
+        @markup << " #{attribute_name.to_s}=\"#{attribute_value}\""
+      end
+    end
+    @markup << ">"
     
     self.instance_eval(&block) if block
     
