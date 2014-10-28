@@ -10,8 +10,8 @@ class MarkupBuilder
     
     if block
       returned_value = self.instance_eval(&block) 
-      if returned_value.is_a? String
-        @markup << returned_value if returned_value
+      if returned_value.is_a?(String) && !returned_value.empty?
+        @markup << returned_value
       end
     end
     
@@ -22,6 +22,10 @@ class MarkupBuilder
 
   def build
     @markup
+  end
+
+  def to_file(file_path="tmp/markup.html") 
+    File.write(file_path, @markup)
   end
  
   private
