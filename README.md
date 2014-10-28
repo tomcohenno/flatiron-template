@@ -4,21 +4,30 @@ Markup Builder
 
 A simple ruby-based markup builder 
 
+Usage:
+---
+
 ```ruby
-html {
-  head {
+builder = MarkupBuilder.new
 
-  }
-}
+builder.
+  html {
+        head {
+          title {
+            "A webpage"
+          }
+        }
+        body {
+          h1 { "Hello World!" }
+          form(action: "/test", method:"post") {
+            input(type: "text", value: "test")
+            input(type: "submit", value: "Save it")
+          }
+        }
+      }
 
-method_missing(a_tag_name, its_attributes, block_of_code)
+builder.build #outputs generated markup
 
-builder.html ==> method_missing("html", nil, { head })
-
-yield with self being builder {
-  head
-}
-
-head => method_missing("head", nil, nil)
+builder.to_file #generates tmp/markup.html
 
 ```
