@@ -1,19 +1,12 @@
 class MarkupBuilder
 
   def initialize
-    @markup = ""
+    @markup = String.new
   end
 
-  def method_missing(tag_name, *tag_attributes, &block)
+  def method_missing(tag_name, *element_attributes, &block)
 
-    @markup << "<#{tag_name}"
-
-    if !tag_attributes.empty?
-      tag_attributes.first.each do |attribute_name, attribute_value|
-        @markup << " #{attribute_name.to_s}=\"#{attribute_value}\""
-      end
-    end
-    @markup << ">"
+    start_markup(tag_name, element_attributes.first)
     
     if block
       returned_value = self.instance_eval(&block) 
@@ -22,13 +15,27 @@ class MarkupBuilder
       end
     end
     
-    @markup << "</#{tag_name}>"
+    end_markup(tag_name)    
 
-    self
+    return self
   end
 
   def build
     @markup
   end
  
+  private
+  def start_markup(tag_name, attributes)
+    @markup << "<#{tag_name}"
+    if attributes
+      attributes.each do |attribute_name, attribute_value|
+        @markup << " #{attribute_name.to_s}=\"#{attribute_value}\""
+      end
+    end    
+    @markup << ">"
+  end
+
+  def end_markup(tag_name)
+    @markup << "</#{tag_name}>"
+  end
 end
