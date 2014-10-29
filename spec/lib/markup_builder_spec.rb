@@ -61,6 +61,24 @@ describe MarkupBuilder do
         expect(builder.build).to eq("<html><head>This is a content for HEAD</head><body>This is a content for BODY</body></html>")
       end
 
+      it "can render preformatted content" do
+        builder.html {
+          """
+          Hello
+          World
+          From 
+          here
+          """
+        }
+
+        expect(builder.build).to eq("""<html>
+          Hello
+          World
+          From 
+          here
+          </html>""")
+      end
+
       it "can run ruby code between blocks" do
         builder.html {
           5.times.collect { "Hey" }.join(",  ")
