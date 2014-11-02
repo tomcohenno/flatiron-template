@@ -1,1 +1,6 @@
-require_relative '../config/environment'
+require 'bundler'
+Bundler.require(:test, :development)
+
+$LOAD_PATH << File.expand_path('../lib', __FILE__)
+
+require 'flatiron-template'
