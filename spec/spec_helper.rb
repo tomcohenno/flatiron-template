@@ -1,4 +1,4 @@
 require 'bundler'
-Bundler.require(:test, :development)
+Bundler.require(:default, :test, :development)
 
 require 'flatiron-template'

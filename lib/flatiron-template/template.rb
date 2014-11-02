@@ -11,8 +11,8 @@ module Flatiron
       
       if block
         returned_value = self.instance_eval(&block) 
-        if returned_value.is_a?(String) && !returned_value.empty?
-          @markup << returned_value
+        if returned_value && returned_value.respond_to?(:to_s) && !returned_value.is_a?(Template)
+          @markup << returned_value.to_s
         end
       end
       
@@ -25,8 +25,16 @@ module Flatiron
       @markup
     end
 
+    def render(data)
+      self.instance_eval(data)
+    end
+
     def to_file(file_path="tmp/markup.html") 
       File.write(file_path, @markup)
+    end
+
+    def to_ary
+      [self.to_s]
     end
    
     private

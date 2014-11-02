@@ -84,8 +84,16 @@ describe Flatiron::Template do
           5.times.collect { "Hey" }.join(",  ")
         }
         expect(builder.build).to eq("<html>Hey,  Hey,  Hey,  Hey,  Hey</html>")
-
       end
+
+      it "can render variables" do
+        cake = true
+        builder.html {
+          cake
+        }
+        expect(builder.build).to eq("<html>true</html>")
+      end 
+
     end
 
     context "when setting attributes" do
