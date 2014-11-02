@@ -1,1 +1,4 @@
-require_relative '../config/environment'
+require 'bundler'
+Bundler.require(:test, :development)
+
+require 'flatiron-template'
