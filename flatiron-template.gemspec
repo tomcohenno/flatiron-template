@@ -6,8 +6,16 @@ Gem::Specification.new do |s|
   s.date = %q{2014-11-02}
   s.description = %q{ An experimental markup language }
 
-  s.files = ["Rakefile", "lib/hola.rb", "lib/hola/translator.rb", "bin/hola"]
-  s.test_files = ["test/test_hola.rb"]
+  s.files = 
+  %w[
+    lib/flatiron-template.rb
+    lib/flatiron-template/markup_builder.rb
+  ]
+  s.test_files = 
+  %w[
+    spec/spec_helper.rb
+    spec/lib/markup_builder_spec.rb
+  ]
 
   s.homepage = %q{http://flatironschool.com}
   s.require_paths = ["lib"]
