@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe MarkupBuilder do
+describe Flatiron::Template do
 
-  let(:builder) { MarkupBuilder.new }
+  let(:builder) { Flatiron::Template.new }
 
   context "when building markup documents" do
 
