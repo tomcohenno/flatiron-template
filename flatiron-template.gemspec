@@ -9,12 +9,12 @@ Gem::Specification.new do |s|
   s.files = 
   %w[
     lib/flatiron-template.rb
-    lib/flatiron-template/markup_builder.rb
+    lib/flatiron-template/template.rb
   ]
   s.test_files = 
   %w[
     spec/spec_helper.rb
-    spec/lib/markup_builder_spec.rb
+    spec/lib/flatiron-template/template_spec.rb
   ]
 
   s.homepage = %q{http://flatironschool.com}

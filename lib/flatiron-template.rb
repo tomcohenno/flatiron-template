@@ -1,1 +1,1 @@
-require 'flatiron-template/markup_builder'
+require 'flatiron-template/template'
