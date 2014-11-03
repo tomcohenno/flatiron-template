@@ -10,6 +10,8 @@ Gem::Specification.new do |s|
   %w[
     lib/flatiron-template.rb
     lib/flatiron-template/template.rb
+    lib/flatiron-template/tilt.rb
+    lib/flatiron-template/register_tilt.rb
   ]
   s.test_files = 
   %w[

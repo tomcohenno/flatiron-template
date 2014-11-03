@@ -4,5 +4,6 @@ task :console do
   require 'flatiron-template'
   require 'tilt'
   require 'flatiron-template/tilt'
+  require 'flatiron-template/register_tilt'
   Pry.start
 end
