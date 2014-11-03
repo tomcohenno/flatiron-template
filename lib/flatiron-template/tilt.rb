@@ -4,16 +4,6 @@ module Tilt
   # the #prepare method and one of the #evaluate or #precompiled_template
   # methods.
   class FlatironTemplate < Tilt::Template
-    # A string containing the (Ruby) source code for the template. The
-    # default Template#evaluate implementation requires either this
-    # method or the #precompiled method be overridden. When defined,
-    # the base Template guarantees correct file/line handling, locals
-    # support, custom scopes, proper encoding, and support for template
-    # compilation.
-    def precompiled_template(local_keys)
-      raise NotImplementedError
-    end
-
     # Do whatever preparation is necessary to setup the underlying template
     # engine. Called immediately after template data is loaded. Instance
     # variables set in this method are available when #evaluate is called.
@@ -29,8 +19,8 @@ module Tilt
     #
     # This method is only used by source generating templates. Subclasses that
     # override render() may not support all features.
-    def evaluate(scope, locals, &block)
-      @engine.render(data).build
+    def evaluate(the_scope, locals, &block)
+      @engine.render(data, locals).build
     end    
   end
 

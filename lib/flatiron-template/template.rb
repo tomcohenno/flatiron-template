@@ -25,8 +25,12 @@ module Flatiron
       @markup
     end
 
-    def render(data)
-      self.instance_eval(data)
+    def render(data, locals={})
+      the_binding = binding()
+      locals.each do |k, v|
+        the_binding.local_variable_set(k.to_sym, v)
+      end
+      eval(data, the_binding)
     end
 
     def to_file(file_path="tmp/markup.html") 
