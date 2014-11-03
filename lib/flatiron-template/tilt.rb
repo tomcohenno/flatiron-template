@@ -20,7 +20,7 @@ module Tilt
     # This method is only used by source generating templates. Subclasses that
     # override render() may not support all features.
     def evaluate(the_scope, locals, &block)
-      @engine.render(data, locals).build
+      @engine.render(the_scope, data, locals).build
     end    
   end
 

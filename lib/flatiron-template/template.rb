@@ -25,11 +25,13 @@ module Flatiron
       @markup
     end
 
-    def render(data, locals={})
+    def render(scope, data, locals={})
       the_binding = binding()
+
       locals.each do |k, v|
         the_binding.local_variable_set(k.to_sym, v)
       end
+
       eval(data, the_binding)
     end
 
