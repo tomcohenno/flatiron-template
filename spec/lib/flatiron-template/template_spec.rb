@@ -79,6 +79,23 @@ describe Flatiron::Template do
           </html>""")
       end
 
+      it "can render Fixnum as content" do
+        builder.html {
+          6
+        }
+        expect(builder.build).to eq("<html>6</html>")
+      end
+
+      it "can render boolean as content" do
+        builder.html {
+          pp true
+          p {
+            false
+          }
+        }
+        expect(builder.build).to eq("<html>true<p>false</p></html>")
+      end      
+
       context "when rendering multiple textual content inside a tag" do
 
         it "should use the pp method" do

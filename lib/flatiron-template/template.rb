@@ -12,7 +12,7 @@ module Flatiron
       
       if block
         returned_value = self.instance_eval(&block)
-        if returned_value && @@allowed_types_as_content.include?(returned_value.class)
+        if !returned_value.nil? && @@allowed_types_as_content.include?(returned_value.class)
           @markup << returned_value.to_s
         end
       end
@@ -27,7 +27,7 @@ module Flatiron
     end
 
     def pp(content)
-      @markup << content
+      @markup << content.to_s
       nil
     end
 
