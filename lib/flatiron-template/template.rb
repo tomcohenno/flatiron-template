@@ -32,6 +32,13 @@ module Flatiron
         the_binding.local_variable_set(k.to_sym, v)
       end
 
+      if scope
+        scope.instance_variables.each do |name|
+          value = scope.instance_variable_get(name)
+          self.instance_variable_set(name, value) if value
+        end
+      end
+
       eval(data, the_binding)
     end
 

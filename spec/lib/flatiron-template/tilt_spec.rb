@@ -17,7 +17,7 @@ describe Tilt::FlatironTemplate do
    expect(output).to eq("<html>this is a var</html>")
   end
 
-  xit "can render instance variables" do
+  it "can render instance variables" do
    template = Tilt::FlatironTemplate.new('spec/fixtures/instance_variables.flat') 
    @instance_var = "A message that should be displayed in the template"
    output = template.render(self)
