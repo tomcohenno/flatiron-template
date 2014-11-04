@@ -8,7 +8,6 @@ module Flatiron
     end
 
     def method_missing(tag_name, *element_attributes, &block)
-
       start_markup(tag_name, element_attributes.first)
       
       if block
@@ -25,6 +24,10 @@ module Flatiron
 
     def build
       @markup
+    end
+
+    def pp(content)
+      @markup << content
     end
 
     def render(scope, data, locals={})
