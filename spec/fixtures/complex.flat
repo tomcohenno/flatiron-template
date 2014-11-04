@@ -1,0 +1,9 @@
+html {
+  body {
+    @students.each do |student| 
+      p {
+        pp student.age
+      } 
+    end
+  }
+}

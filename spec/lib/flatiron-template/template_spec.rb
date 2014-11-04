@@ -115,6 +115,13 @@ describe Flatiron::Template do
 
           expect(builder.build).to eq("<html>not_repeated</html>")
         end
+
+        it "renders properly when numbers are supplied" do
+          builder.html {
+            pp 9999
+          }
+          expect(builder.build).to eq("<html>9999</html>")
+        end
       end
 
       it "can run ruby code between blocks" do

@@ -24,4 +24,22 @@ describe Tilt::FlatironTemplate do
    expect(output).to eq("<html>A message that should be displayed in the template</html>")
   end
 
+  it "can render complex templates" do
+    @students = []
+    1.upto(2) do |num|
+        @students << Student.new.tap do |student|
+          student.name = "Student#{num}"
+          student.age = 30
+          student.city = "New York"
+        end
+    end    
+    template = Tilt::FlatironTemplate.new('spec/fixtures/complex.flat') 
+    output = template.render(self)
+    expect(output).to eq("<html><body><p>30</p><p>30</p></body></html>")
+  end
+
+end
+
+class Student
+  attr_accessor :name, :age, :city
 end
