@@ -1,6 +1,8 @@
 module Flatiron
   class Template
 
+    @@allowed_types_as_content = [String, Fixnum, TrueClass, FalseClass]
+
     def initialize
       @markup = String.new
     end
@@ -11,7 +13,7 @@ module Flatiron
       
       if block
         returned_value = self.instance_eval(&block) 
-        if returned_value && returned_value.respond_to?(:to_s) && !returned_value.is_a?(Template)
+        if returned_value && @@allowed_types_as_content.include?(returned_value.class)
           @markup << returned_value.to_s
         end
       end
