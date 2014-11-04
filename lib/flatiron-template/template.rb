@@ -11,7 +11,7 @@ module Flatiron
       start_markup(tag_name, element_attributes.first)
       
       if block
-        returned_value = self.instance_eval(&block) 
+        returned_value = self.instance_eval(&block)
         if returned_value && @@allowed_types_as_content.include?(returned_value.class)
           @markup << returned_value.to_s
         end
@@ -29,6 +29,10 @@ module Flatiron
     def pp(content)
       @markup << content
       nil
+    end
+
+    def p(*args, &block) 
+      method_missing("p", *args, &block)
     end
 
     def render(scope, data, locals={})

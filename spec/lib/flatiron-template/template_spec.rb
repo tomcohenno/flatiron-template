@@ -107,13 +107,60 @@ describe Flatiron::Template do
         expect(builder.build).to eq("<html>Hey,  Hey,  Hey,  Hey,  Hey</html>")
       end
 
-      it "can render variables" do
-        cake = true
-        builder.html {
-          cake
-        }
-        expect(builder.build).to eq("<html>true</html>")
-      end 
+
+      context "when rendering tags that clash with ruby keywords" do
+        context  "when rendering the p tag" do
+          it "allows the p tag to be rendered" do
+            builder.html {
+              p {
+
+              }
+            }
+            expect(builder.build).to eq("<html><p></p></html>")
+          end
+
+          it "allows the p tag to have attributes" do
+            builder.html {
+              p(test:'true') {
+
+              }
+            }            
+
+            expect(builder.build).to eq("<html><p test=\"true\"></p></html>")
+          end
+
+          it "allows the p tag to have content and attributes" do
+            builder.html {
+              p(test:'true') {
+                "Yo!"
+              }
+            }            
+
+            expect(builder.build).to eq("<html><p test=\"true\">Yo!</p></html>")            
+          end
+
+        end
+
+        it "it allows setting class as attribute" do
+
+          builder.html {
+            p(class: 'test') {
+
+            }
+          }
+
+          expect(builder.build).to eq('<html><p class="test"></p></html>')
+        end
+
+        it "can render variables" do
+          cake = true
+          builder.html {
+            cake
+          }
+          expect(builder.build).to eq("<html>true</html>")
+        end 
+
+      end
 
     end
 
