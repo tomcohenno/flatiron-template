@@ -79,14 +79,25 @@ describe Flatiron::Template do
           </html>""")
       end
 
-      it "can render multiple textual content through pp method" do
-        fruits = ["Apple", "Banana", "Orange", "Pineapple"] 
-        builder.html {
-          fruits.each do |fruit|
-            pp fruit
-          end
-        }
-        expect(builder.build).to eq("<html>AppleBananaOrangePineapple</html>")
+      context "when rendering multiple textual content inside a tag" do
+
+        it "should use the pp method" do
+          fruits = ["Apple", "Banana", "Orange", "Pineapple"] 
+          builder.html {
+            fruits.each do |fruit|
+              pp fruit
+            end
+          }
+          expect(builder.build).to eq("<html>AppleBananaOrangePineapple</html>")
+        end
+
+        it "renders properly when used in isolation" do
+          builder.html {
+              pp "not_repeated"
+          }
+
+          expect(builder.build).to eq("<html>not_repeated</html>")
+        end
       end
 
       it "can run ruby code between blocks" do

@@ -28,6 +28,7 @@ module Flatiron
 
     def pp(content)
       @markup << content
+      nil
     end
 
     def render(scope, data, locals={})
