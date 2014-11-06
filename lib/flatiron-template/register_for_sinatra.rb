@@ -1,4 +1,4 @@
-require 'flatiron-template/register_for_sinatra'
+require 'flatiron-template/register_tilt'
 
 module Sinatra
   module Templates  
