@@ -12,11 +12,13 @@ Gem::Specification.new do |s|
     lib/flatiron-template/template.rb
     lib/flatiron-template/tilt.rb
     lib/flatiron-template/register_tilt.rb
+    lib/flatiron-template/register_for_sinatra.rb
   ]
   s.test_files = 
   %w[
     spec/spec_helper.rb
     spec/lib/flatiron-template/template_spec.rb
+    spec/lib/flatiron-template/tilt_spec.rb    
   ]
 
   s.homepage = %q{http://flatironschool.com}
